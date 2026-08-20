@@ -3,11 +3,9 @@
 A tiny CLI that reads live telemetry from a GivEnergy inverter over your
 local network — battery state of charge, solar power in, grid
 import/export, house load — with no cloud account, no Docker, no
-Home Assistant. It talks directly to the inverter's WiFi/ethernet dongle
-using GivEnergy's own Modbus-TCP dialect (see [NOTICE.md](NOTICE.md) for
-where that protocol knowledge came from). The protocol layer itself
-(`internal/givenergy/`) is still pure Go standard library; the only
-dependency is [Cobra](https://github.com/spf13/cobra) for argument parsing.
+Home Assistant. 
+
+It talks directly to the inverter's WiFi/ethernet dongle.
 
 Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>. Licensed under the
 [MIT License](LICENSE). Contributions welcome — see
@@ -76,21 +74,14 @@ local `go build` reports `dev`; to stamp a specific version yourself:
 go build -ldflags "-X main.version=$(git describe --tags --always --dirty)" -o givenergy-cli .
 ```
 
-## A couple of things worth knowing
-
-- **Grid/battery sign convention.** Confirmed against a live system by
-  cross-checking the energy balance (solar ≈ load + grid export + battery
-  charge power) on a real reading: positive `p_grid_out` = exporting,
-  and — contrary to what the register name suggests — positive raw
-  `p_battery` is *charging* the battery, not discharging, so
-  `metrics.go` negates it before exposing `Snapshot.BatteryWatts` (positive
-  = charging, to match its doc comment). If your numbers ever look
-  backwards, that's the place to check.
-- **Polling frequency.** The upstream protocol notes that address `0x11`
-  responses get forwarded to the GivEnergy cloud, and recommend avoiding
-  sub-5-minute polling on it for that reason. The default 5s `--watch`
-  interval is convenient but more aggressive than that guidance; if you see
-  errors or slowdowns, pass a longer `--interval`.
+## Example Output
+```
+Battery SOC    84%
+Solar in        975 W
+Grid              1 W  (import)
+House load      633 W
+Battery         299 W  (charging)
+```
 
 ## How it works
 
