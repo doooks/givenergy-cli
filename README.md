@@ -50,6 +50,9 @@ Flags:
 | `--interval` | `5s` | poll interval in watch mode |
 | `--timeout` | `5s` | per-poll network timeout |
 
+`givenergy-monitor warranty` prints the software's no-warranty disclaimer
+(the same text as [LICENSE](LICENSE)).
+
 ## A couple of things worth knowing
 
 - **Grid/battery sign convention.** Confirmed against a live system by
