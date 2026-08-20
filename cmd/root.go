@@ -29,6 +29,9 @@ var rootCmd = &cobra.Command{
 		"local Modbus TCP — no cloud account, no extra infrastructure.",
 	SilenceUsage: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if cmd.Flags().NFlag() == 0 {
+			return cmd.Help()
+		}
 		if host == "" {
 			return fmt.Errorf("missing --host (or GIVENERGY_HOST)")
 		}
