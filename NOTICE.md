@@ -1,4 +1,8 @@
-# Third-party attribution
+# Notices
+
+Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>
+
+## Third-party attribution
 
 This project's understanding of GivEnergy's proprietary Modbus-TCP dialect
 (frame layout, CRC scheme, and register map) comes from reading the source of:

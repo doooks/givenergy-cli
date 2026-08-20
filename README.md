@@ -7,6 +7,8 @@ Home Assistant. It talks directly to the inverter's WiFi/ethernet dongle
 using GivEnergy's own Modbus-TCP dialect (see [NOTICE.md](NOTICE.md) for
 where that protocol knowledge came from).
 
+Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>
+
 ## Build
 
 ```sh
