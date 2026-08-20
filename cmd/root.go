@@ -1,4 +1,4 @@
-// Package cmd defines the givenergy-monitor command-line interface.
+// Package cmd defines the givenergy-cli command-line interface.
 package cmd
 
 import (
@@ -22,9 +22,9 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "givenergy-monitor",
+	Use:   "givenergy-cli",
 	Short: "Read live telemetry from a GivEnergy inverter over the local network",
-	Long: "givenergy-monitor reads battery state of charge, solar power in, grid\n" +
+	Long: "givenergy-cli reads battery state of charge, solar power in, grid\n" +
 		"import/export, and house load from a GivEnergy inverter's dongle over\n" +
 		"local Modbus TCP — no cloud account, no extra infrastructure.",
 	SilenceUsage: true,

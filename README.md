@@ -1,4 +1,4 @@
-# givenergy-monitor
+# givenergy-cli
 
 A tiny CLI that reads live telemetry from a GivEnergy inverter over your
 local network — battery state of charge, solar power in, grid
@@ -16,19 +16,27 @@ Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>. Licensed under the
 ## Build
 
 ```sh
-go build -o givenergy-monitor .
+go build -o givenergy-cli .
 ```
 
 Cross-compile for another machine (e.g. a Raspberry Pi) with `GOOS`/`GOARCH`:
 
 ```sh
-GOOS=linux GOARCH=arm64 go build -o givenergy-monitor-arm64 .
+GOOS=linux GOARCH=arm64 go build -o givenergy-cli-arm64 .
 ```
+
+### Pre-built releases
 
 Pushing a `v*` tag (e.g. `v1.0.0`) triggers
 [`.github/workflows/release.yml`](.github/workflows/release.yml), which
-vets, tests, cross-builds binaries for linux/darwin/windows on amd64/arm64,
-and attaches them (plus a checksums file) to a GitHub release for that tag.
+vets, tests, and cross-builds for linux/darwin (amd64/arm64) and
+windows/amd64. Each platform's release asset is an archive named for that
+platform (e.g. `givenergy-cli-linux-amd64.tar.gz`,
+`givenergy-cli-windows-amd64.zip`) containing a folder of the same name with
+the binary inside — always named plainly `givenergy-cli` (`.exe` on
+Windows), regardless of platform. Pick the archive matching your OS/arch,
+extract it, and run the binary inside. A `checksums.txt` covering all of
+them is attached too.
 
 ## Usage
 
@@ -37,10 +45,10 @@ device settings in the GivEnergy app).
 
 ```sh
 # one-shot snapshot
-./givenergy-monitor --host 192.168.1.50
+./givenergy-cli --host 192.168.1.50
 
 # live view, refreshing every 5s, until Ctrl+C
-./givenergy-monitor --host 192.168.1.50 --watch
+./givenergy-cli --host 192.168.1.50 --watch
 ```
 
 `--host` can also be set via the `GIVENERGY_HOST` environment variable.
@@ -56,16 +64,16 @@ Flags:
 | `--interval` | `5s` | poll interval in watch mode |
 | `--timeout` | `5s` | per-poll network timeout |
 
-`givenergy-monitor warranty` prints the software's no-warranty disclaimer,
-`givenergy-monitor license` prints the full [LICENSE](LICENSE) text, and
-`givenergy-monitor version` prints the build version.
+`givenergy-cli warranty` prints the software's no-warranty disclaimer,
+`givenergy-cli license` prints the full [LICENSE](LICENSE) text, and
+`givenergy-cli version` prints the build version.
 
 Release binaries have their version locked to the git tag they were built
 from, via `-ldflags "-X main.version=..."` in the release workflow. A plain
 local `go build` reports `dev`; to stamp a specific version yourself:
 
 ```sh
-go build -ldflags "-X main.version=$(git describe --tags --always --dirty)" -o givenergy-monitor .
+go build -ldflags "-X main.version=$(git describe --tags --always --dirty)" -o givenergy-cli .
 ```
 
 ## A couple of things worth knowing

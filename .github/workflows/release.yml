@@ -28,7 +28,7 @@ jobs:
           VERSION: ${{ github.ref_name }}
         run: |
           set -euo pipefail
-          mkdir -p dist
+          mkdir -p dist release-assets
           targets=(
             "linux amd64"
             "linux arm64"
@@ -38,17 +38,29 @@ jobs:
           )
           for target in "${targets[@]}"; do
             read -r goos goarch <<< "$target"
-            ext=""
-            [ "$goos" = "windows" ] && ext=".exe"
-            out="dist/givenergy-monitor-${VERSION}-${goos}-${goarch}${ext}"
-            echo "building ${out}"
+            platform="${goos}-${goarch}"
+            outdir="dist/${platform}"
+            mkdir -p "${outdir}"
+
+            bin="givenergy-cli"
+            [ "$goos" = "windows" ] && bin="givenergy-cli.exe"
+            echo "building ${outdir}/${bin}"
             GOOS="$goos" GOARCH="$goarch" CGO_ENABLED=0 \
-              go build -trimpath -ldflags "-s -w -X main.version=${VERSION}" -o "${out}" .
+              go build -trimpath -ldflags "-s -w -X main.version=${VERSION}" -o "${outdir}/${bin}" .
+
+            # Every platform's binary is named identically (givenergy-cli[.exe]);
+            # the platform folder inside the archive, and the archive's own
+            # filename, are what tell them apart.
+            if [ "$goos" = "windows" ]; then
+              ( cd dist && zip -q -r "../release-assets/givenergy-cli-${platform}.zip" "${platform}" )
+            else
+              tar -czf "release-assets/givenergy-cli-${platform}.tar.gz" -C dist "${platform}"
+            fi
           done
-          ( cd dist && sha256sum * > "givenergy-monitor-${VERSION}-checksums.txt" )
+          ( cd release-assets && sha256sum * > checksums.txt )
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: release-assets/*
           generate_release_notes: true
