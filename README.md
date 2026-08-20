@@ -50,8 +50,8 @@ Flags:
 | `--interval` | `5s` | poll interval in watch mode |
 | `--timeout` | `5s` | per-poll network timeout |
 
-`givenergy-monitor warranty` prints the software's no-warranty disclaimer
-(the same text as [LICENSE](LICENSE)).
+`givenergy-monitor warranty` prints the software's no-warranty disclaimer,
+and `givenergy-monitor license` prints the full [LICENSE](LICENSE) text.
 
 ## A couple of things worth knowing
 

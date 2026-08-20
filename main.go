@@ -5,12 +5,21 @@
 package main
 
 import (
+	_ "embed"
 	"os"
 
 	"givenergy-cli/cmd"
 )
 
+// licenseText is embedded here, rather than in the cmd package, because an
+// embed path can't reach outside the embedding file's own directory — and
+// LICENSE lives at the module root alongside this file.
+//
+//go:embed LICENSE
+var licenseText string
+
 func main() {
+	cmd.LicenseText = licenseText
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
 	}
