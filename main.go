@@ -18,8 +18,14 @@ import (
 //go:embed LICENSE
 var licenseText string
 
+// version is set at build time via -ldflags "-X main.version=...", locking
+// it to the git tag being built (see .github/workflows/release.yml). A
+// plain `go build`/`go run` without that flag leaves it as "dev".
+var version = "dev"
+
 func main() {
 	cmd.LicenseText = licenseText
+	cmd.Version = version
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
 	}

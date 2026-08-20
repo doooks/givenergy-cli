@@ -56,7 +56,16 @@ Flags:
 | `--timeout` | `5s` | per-poll network timeout |
 
 `givenergy-monitor warranty` prints the software's no-warranty disclaimer,
-and `givenergy-monitor license` prints the full [LICENSE](LICENSE) text.
+`givenergy-monitor license` prints the full [LICENSE](LICENSE) text, and
+`givenergy-monitor version` prints the build version.
+
+Release binaries have their version locked to the git tag they were built
+from, via `-ldflags "-X main.version=..."` in the release workflow. A plain
+local `go build` reports `dev`; to stamp a specific version yourself:
+
+```sh
+go build -ldflags "-X main.version=$(git describe --tags --always --dirty)" -o givenergy-monitor .
+```
 
 ## A couple of things worth knowing
 
