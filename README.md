@@ -1,11 +1,13 @@
 # givenergy-monitor
 
-A tiny, dependency-free CLI that reads live telemetry from a GivEnergy
-inverter over your local network — battery state of charge, solar power in,
-grid import/export, house load — with no cloud account, no Docker, no
+A tiny CLI that reads live telemetry from a GivEnergy inverter over your
+local network — battery state of charge, solar power in, grid
+import/export, house load — with no cloud account, no Docker, no
 Home Assistant. It talks directly to the inverter's WiFi/ethernet dongle
 using GivEnergy's own Modbus-TCP dialect (see [NOTICE.md](NOTICE.md) for
-where that protocol knowledge came from).
+where that protocol knowledge came from). The protocol layer itself
+(`internal/givenergy/`) is still pure Go standard library; the only
+dependency is [Cobra](https://github.com/spf13/cobra) for argument parsing.
 
 Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>. Licensed under the
 [MIT License](LICENSE).
