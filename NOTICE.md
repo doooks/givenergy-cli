@@ -1,6 +1,7 @@
 # Notices
 
-Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>
+Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>. Licensed under the
+MIT License (see [LICENSE](LICENSE)).
 
 ## Third-party attribution
 
