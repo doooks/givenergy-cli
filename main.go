@@ -8,7 +8,7 @@ import (
 	_ "embed"
 	"os"
 
-	"givenergy-cli/cmd"
+	"github.com/doooks/givenergy-cli/cmd"
 )
 
 // licenseText is embedded here, rather than in the cmd package, because an

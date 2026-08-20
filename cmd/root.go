@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"givenergy-cli/internal/display"
-	"givenergy-cli/internal/givenergy"
+	"github.com/doooks/givenergy-cli/internal/display"
+	"github.com/doooks/givenergy-cli/internal/givenergy"
 )
 
 var (

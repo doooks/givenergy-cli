@@ -17,6 +17,12 @@ Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>. Licensed under the
 go build -o givenergy-cli .
 ```
 
+Or install a released version directly:
+
+```sh
+go install github.com/doooks/givenergy-cli@latest
+```
+
 Cross-compile for another machine (e.g. a Raspberry Pi) with `GOOS`/`GOARCH`:
 
 ```sh

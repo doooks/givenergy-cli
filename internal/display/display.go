@@ -6,7 +6,7 @@ import (
 	"io"
 	"time"
 
-	"givenergy-cli/internal/givenergy"
+	"github.com/doooks/givenergy-cli/internal/givenergy"
 )
 
 // FormatSnapshot renders a snapshot as a short, aligned block of text.

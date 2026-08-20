@@ -1,4 +1,4 @@
-module givenergy-cli
+module github.com/doooks/givenergy-cli
 
 go 1.26.5
 
