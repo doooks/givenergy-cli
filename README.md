@@ -10,7 +10,8 @@ where that protocol knowledge came from). The protocol layer itself
 dependency is [Cobra](https://github.com/spf13/cobra) for argument parsing.
 
 Copyright (c) 2026 Dan Dukeson <dandukeson@gmail.com>. Licensed under the
-[MIT License](LICENSE).
+[MIT License](LICENSE). Contributions welcome — see
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Build
 
