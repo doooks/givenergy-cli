@@ -30,9 +30,12 @@ var rootCmd = &cobra.Command{
 	SilenceUsage: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().NFlag() == 0 {
-			cmd.Println(warrantyText)
+			if err := cmd.Help(); err != nil {
+				return err
+			}
 			cmd.Println()
-			return cmd.Help()
+			cmd.Println(warrantyText)
+			return nil
 		}
 		if host == "" {
 			return fmt.Errorf("missing --host (or GIVENERGY_HOST)")
