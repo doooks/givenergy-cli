@@ -24,6 +24,11 @@ Cross-compile for another machine (e.g. a Raspberry Pi) with `GOOS`/`GOARCH`:
 GOOS=linux GOARCH=arm64 go build -o givenergy-monitor-arm64 .
 ```
 
+Pushing a `v*` tag (e.g. `v1.0.0`) triggers
+[`.github/workflows/release.yml`](.github/workflows/release.yml), which
+vets, tests, cross-builds binaries for linux/darwin/windows on amd64/arm64,
+and attaches them (plus a checksums file) to a GitHub release for that tag.
+
 ## Usage
 
 Find your dongle's local IP first (your router's DHCP client list, or the
