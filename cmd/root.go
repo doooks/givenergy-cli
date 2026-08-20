@@ -30,6 +30,8 @@ var rootCmd = &cobra.Command{
 	SilenceUsage: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().NFlag() == 0 {
+			cmd.Println(warrantyText)
+			cmd.Println()
 			return cmd.Help()
 		}
 		if host == "" {
